@@ -1,26 +1,26 @@
 dir()
 # beolvasás
-m1904 = read.table("201904.txt",head=T,sep="\t", dec=",")
-str(m1904)
-m1904csak = m1904[,c(2:4,6,11,13)]
-colnames(m1904csak)=c("lh","rp","w","wi","cs","s")
+m2001 = read.table("202001.txt",head=T,sep="\t", dec=",", skip=17)
+str(m2001)
+m2001csak = m2001[,c(2:4,6,11,13)]
+colnames(m2001csak)=c("lh","rp","w","wi","cs","s")
 
 
 # idõ
-m1904ido = m1904[,1]
-m1904iP = strptime(m1904ido, "%Y.%m.%d %H:%M")
+m2001ido = m2001[,1]
+m2001iP = strptime(m2001ido, "%Y.%m.%d %H:%M")
 
-plot(m1904iP, m1904csak$lh , type="l")
+plot(m2001iP, m2001csak$lh , type="l")
 
 # xts
 library(xts)
-m1904.xts = xts(m1904csak, m1904iP)
-plot(m1904.xts$lh)
+m2001.xts = xts(m2001csak, m2001iP)
+plot(m2001.xts$lh)
 
-filename = "201904.txt"
+filename = "202001.txt"
 aktual = read.table(filename, head=T, sep="\t", dec=",", na.strin = "-999,9")[,c(2:4,6,11,13)]
 colnames(aktual)=c("lh","rp","w","wi","cs","s")
-aktido = as.POSIXct(strptime(m1904ido, "%Y.%m.%d %H:%M"))
+aktido = as.POSIXct(strptime(m2001ido, "%Y.%m.%d %H:%M"))
 akt.xts = xts(aktual, aktido)
 telj.xts = akt.xts
 
