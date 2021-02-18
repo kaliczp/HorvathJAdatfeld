@@ -18,10 +18,10 @@ m2001.xts = xts(m2001csak, m2001iP)
 plot(m2001.xts$lh)
 
 filename = "202001.txt"
-aktual = read.table(filename, head=T, sep="\t", dec=",", na.strin = "-999,9")[,c(2:4,6,11,13)]
-colnames(aktual)=c("lh","rp","w","wi","cs","s")
-aktido = as.POSIXct(strptime(m2001ido, "%Y.%m.%d %H:%M"))
-akt.xts = xts(aktual, aktido)
+aktual = read.table(filename, head=F, sep="\t", dec=",", skip=17, na.strin = "-999,9")[,c(1:4,6,11,13)]
+colnames(aktual)=c("ido","lh","rp","w","wi","cs","s")
+aktido = as.POSIXct(strptime(aktual[,1], "%Y.%m.%d %H:%M"))
+akt.xts = xts(aktual[,-1], aktido)
 telj.xts = akt.xts
 
 # fileall = c("201905.txt","201906.txt","201907.txt")
