@@ -42,9 +42,10 @@ for(filename in fileall) {
 # plot hõmérséklet
 plot(telj.xts$lh)
 # napi átlag
-napi = apply.daily(telj.xts$lh, mean)
-havi = apply.monthly(telj.xts$lh, mean)
+napi = apply.daily(telj.xts$lh, mean, na.rm=T)
+havi = apply.monthly(telj.xts$lh, mean, na.rm=T)
 
 plot(napi)
+plot(havi)
 
 index(telj.xts)[diff(index(telj.xts)) > 600]
