@@ -49,3 +49,6 @@ plot(napi)
 plot(havi)
 
 index(telj.xts)[diff(index(telj.xts)) > 600]
+
+write.table(round(napi, 2), "napi.txt", sep = "\t", dec = ",", row.name = F)
+write.table(round(havi, 2), "havi.txt", sep = "\t", dec = ",", row.name = F)
