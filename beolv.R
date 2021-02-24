@@ -17,7 +17,10 @@ library(xts)
 m2001.xts = xts(m2001csak, m2001iP)
 plot(m2001.xts$lh)
 
-filename = "202001.txt"
+## 201907 és 201912 fájlok végén üres sorokat töröltem!
+## 2020.05.29 13:00-ra átírtam az elsõ mérést.
+
+filename = "201904.txt"
 aktual = read.table(filename, head=F, sep="\t", dec=",", skip=17, na.strin = "-999,9")[,c(1:4,6,11,13)]
 colnames(aktual)=c("ido","lh","rp","w","wi","cs","s")
 aktido = as.POSIXct(strptime(aktual[,1], "%Y.%m.%d %H:%M"))
@@ -38,6 +41,10 @@ for(filename in fileall) {
    akt.xts = xts(aktual, aktido)
    telj.xts = c(telj.xts, akt.xts)
 }
+
+## A 2020 április-májusi hiány egyértelmûsítése
+## 2020.05.29 13:00
+kieg <- 
 
 # plot hõmérséklet
 plot(telj.xts$lh)
