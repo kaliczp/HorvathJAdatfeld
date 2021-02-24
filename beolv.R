@@ -49,8 +49,14 @@ kieg <-
 # plot hõmérséklet
 plot(telj.xts$lh)
 # napi átlag
-napi = apply.daily(telj.xts$lh, mean, na.rm=T)
-havi = apply.monthly(telj.xts$lh, mean, na.rm=T)
+napi = apply.daily(telj.xts, mean, na.rm=T)
+napi = round(napi, 2)
+havi = apply.monthly(telj.xts, mean, na.rm=T)
+havi = round(havi, 2)
+
+## Csapadé összegek
+napi$cs = apply.daily(telj.xts$cs, sum, na.rm=T)
+havi$cs = apply.monthly(telj.xts$cs, sum, na.rm=T)
 
 plot(napi)
 plot(havi)
