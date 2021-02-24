@@ -31,7 +31,7 @@ telj.xts = akt.xts
 fileall = dir(patt="^2")[-1]
 
 for(filename in fileall) {
-   aktual = read.table(filename, head=T, sep="\t", dec=",", skip=17, na.strin = "-999,9")[,c(1:4,6,11,13)]
+   aktual = read.table(filename, head=F, sep="\t", dec=",", skip=17, na.strin = "-999,9")[,c(1:4,6,11,13)]
    aktidochr = aktual[,1]
    aktual = aktual[,-1]
    colnames(aktual)=c("lh","rp","w","wi","cs","s")
